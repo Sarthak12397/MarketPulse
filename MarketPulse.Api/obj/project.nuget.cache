@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "NH9X3znUSwU=",
+  "success": true,
+  "projectFilePath": "D:\\Final_Projects\\Market_pulse\\MarketPulse.Api\\MarketPulse.Api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Sarthak Shrestha\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.3\\microsoft.aspnetcore.openapi.10.0.3.nupkg.sha512",
+    "C:\\Users\\Sarthak Shrestha\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
