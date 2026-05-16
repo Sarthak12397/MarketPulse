@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="MarketPulse.Api/MarketPulse.Api.csproj" />
+  <Project Path="MarketPulse.Application/MarketPulse.Application.csproj" />
+  <Project Path="MarketPulse.Domain/MarketPulse.Domain.csproj" />
+  <Project Path="MarketPulse.Infrastructure/MarketPulse.Infrastructure.csproj" />
+</Solution>

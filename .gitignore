@@ -1,5 +1,66 @@
-appsettings.json
-appsettings.Development.json
+# =========================
+# .NET Core / ASP.NET Core
+# =========================
+
 bin/
 obj/
-docker-compose.yml
+out/
+
+*.dll
+*.exe
+*.pdb
+
+# Solution / user files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio
+.vs/
+
+# Rider / JetBrains
+.idea/
+
+# =========================
+# ASP.NET / Config Secrets
+# =========================
+
+appsettings.Development.json
+appsettings.Production.json
+appsettings.Local.json
+secrets.json
+
+*.key
+*.pem
+
+# =========================
+# Logs
+# =========================
+
+*.log
+Logs/
+log/
+logs/
+
+# =========================
+# EF Core (keep migrations, ignore local artifacts)
+# =========================
+
+# (Do NOT ignore Migrations folder unless explicitly needed)
+# Only ignore local EF temp files if they appear
+efbundle.exe
+
+# =========================
+# Redis / Hangfire / Local DB artifacts
+# =========================
+
+hangfire.db
+*.sqlite
+*.db
+
+# =========================
+# Docker
+# =========================
+
+docker-compose.override.yml
