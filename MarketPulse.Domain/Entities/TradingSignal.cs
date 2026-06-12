@@ -1,4 +1,6 @@
 using System;
+using MarketPulse.Domain.Exceptions;
+namespace MarketPulse.Domain.Entities;
 
 public class TradingSignal
 {
@@ -8,12 +10,13 @@ public class TradingSignal
     public Guid AssetId { get; init; }
     public Guid SignalJobId { get; init; }
 
-    public string Symbol { get; init; }
+    public string Symbol { get; init; } = null!;
+
     public SignalDirection Direction { get; init; }
     public decimal ConfidenceScore { get; init; }
     public ConfidenceLevel ConfidenceLevel { get; init; }
     public decimal PriceAtGeneration { get; init; }
-    public string Reasoning { get; init; }
+    public string Reasoning { get; init; }= null!;
     public DateTime ValidFrom { get; init; }
     public DateTime ExpiresAt { get; init; }
     public DateTime GeneratedAt { get; init; }
@@ -52,6 +55,8 @@ public class TradingSignal
 
     if (priceAtGeneration <= 0)
         throw new ArgumentException("Price at generation must be greater than zero.", nameof(priceAtGeneration));
+        if (string.IsNullOrWhiteSpace(symbol))
+    throw new ArgumentException("Symbol cannot be null or empty", nameof(symbol));
 
     if (string.IsNullOrWhiteSpace(reasoning))
         throw new ArgumentException("Reasoning cannot be null or empty.", nameof(reasoning));
@@ -86,6 +91,47 @@ public class TradingSignal
 
     Status = SignalStatus.Active;
     GeneratedAt = DateTime.UtcNow;
+    UpdatedAt = DateTime.UtcNow;
+}
+
+
+
+
+public void Expire()
+{
+    if (Status != SignalStatus.Active)
+    {
+        throw new InvalidTradingSignalStateException(TradingSignalId, Status,
+            $"Cannot expire a signal with status '{Status}'.");
+    }
+
+    Status = SignalStatus.Expired;
+    UpdatedAt = DateTime.UtcNow;
+}
+
+public void Cancel()
+{
+    if (Status == SignalStatus.Expired ||
+        Status == SignalStatus.Cancelled ||
+        Status == SignalStatus.Evaluated)
+    {
+        throw new InvalidTradingSignalStateException(TradingSignalId, Status,
+            "Cannot cancel a terminal trading signal.");
+    }
+
+    Status = SignalStatus.Cancelled;
+    UpdatedAt = DateTime.UtcNow;
+}
+
+public void MarkEvaluated()
+{
+    if (Status != SignalStatus.Expired)
+    {
+        throw new InvalidTradingSignalStateException(TradingSignalId, Status,
+            "Trading signal must be expired before it can be evaluated.");
+    }
+
+    Status = SignalStatus.Evaluated;
     UpdatedAt = DateTime.UtcNow;
 }
 private static ConfidenceLevel DeriveLevel(decimal score)

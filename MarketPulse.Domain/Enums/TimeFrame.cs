@@ -1,5 +1,9 @@
 public enum TimeFrame
 {
-    
-M1, M5, M15, H1, H4, D1
+    M1 = 1,
+    M5 = 5,
+    M15 = 15,
+    H1 = 60,
+    H4 = 240,
+    D1 = 1440
 }

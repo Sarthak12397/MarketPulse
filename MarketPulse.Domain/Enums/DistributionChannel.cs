@@ -1,11 +1,9 @@
 public enum DistributionChannel
 {
-    Telegram,
-    Discord,
-    Email,
-    Twitter,
-    Youtube,
-    API,
-    WebHook
-    
+    Email = 0,
+    Telegram = 1,
+    Discord = 2,
+    Twitter = 3,
+    YouTube = 4,
+    Webhook = 5
 }

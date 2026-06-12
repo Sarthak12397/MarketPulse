@@ -1,7 +1,6 @@
 public enum SignalDirection
 {
-    LONG,
-    SHORT,
-    NEUTRAL,
-    NOSIGNAL
+    Long = 0,
+    Short = 1,
+    Neutral = 2
 }
