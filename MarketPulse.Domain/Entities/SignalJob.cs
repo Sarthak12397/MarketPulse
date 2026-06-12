@@ -64,4 +64,14 @@ public class SignalJob
     {
         if (Status != SignalJobStatus.Running)
             throw new InvalidSignalJobStateException(
-                SignalJobId, Status, $"Cannot fail a job with status {Status}. Expect
+                SignalJobId, Status, $"Cannot fail a job with status {Status}. Expected Running.");
+
+        if (string.IsNullOrWhiteSpace(reason))
+            throw new ArgumentException("Failure reason cannot be null or empty", nameof(reason));
+
+        Status        = SignalJobStatus.Failed;
+        FailureReason = reason;
+        CompletedAt   = DateTime.UtcNow;
+        UpdatedAt     = DateTime.UtcNow;
+    }
+}
