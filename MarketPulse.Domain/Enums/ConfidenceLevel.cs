@@ -1,3 +1,5 @@
+
+
 public enum ConfidenceLevel
 {
     Low = 0,      // 0.00 - 0.45

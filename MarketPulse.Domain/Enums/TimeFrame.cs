@@ -1,3 +1,4 @@
+
 public enum TimeFrame
 {
     M1 = 1,

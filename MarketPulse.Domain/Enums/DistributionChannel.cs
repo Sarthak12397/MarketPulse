@@ -1,3 +1,6 @@
+
+namespace MarketPulse.Domain.Enums;
+
 public enum DistributionChannel
 {
     Email = 0,

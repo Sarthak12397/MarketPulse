@@ -1,3 +1,5 @@
+namespace MarketPulse.Domain.Enums;
+
 public enum DistributionStatus
 {
     Pending = 0,

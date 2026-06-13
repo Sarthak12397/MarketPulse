@@ -9,4 +9,6 @@ public interface IDistributionRecordRepository
     Task<IReadOnlyList<DistributionRecord>> GetBySignalIdAsync(Guid tradingSignalId, CancellationToken ct);
     Task AddRangeAsync(IEnumerable<DistributionRecord> records, CancellationToken ct);
     Task UpdateAsync(DistributionRecord record, CancellationToken ct);
+
 }
+

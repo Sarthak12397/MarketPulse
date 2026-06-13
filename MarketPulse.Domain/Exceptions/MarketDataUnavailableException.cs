@@ -1,8 +1,8 @@
-using TradingSignals.Domain.Enums;
+using MarketPulse.Domain.Enums;
 
-namespace TradingSignals.Domain.Exceptions;
+namespace MarketPulse.Domain.Exceptions;
 
-public sealed class MarketDataUnavailableException : DomainException
+public sealed class MarketDataUnavailableException : Exception
 {
     public MarketDataUnavailableException(
         string symbol,

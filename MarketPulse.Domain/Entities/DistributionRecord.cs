@@ -1,4 +1,5 @@
 using MarketPulse.Domain.Exceptions;
+using MarketPulse.Domain.Enums;
 
 namespace MarketPulse.Domain.Entities;
 
@@ -98,4 +99,13 @@ public class DistributionRecord
         Status    = DistributionStatus.PermanentlyFailed;
         UpdatedAt = DateTime.UtcNow;
     }
+    public void ResetToPending()
+{
+    if (Status == DistributionStatus.PermanentlyFailed)
+        throw new InvalidDistributionStateException(
+            DistributionRecordId, Status, "Cannot reset a permanently failed record");
+
+    Status    = DistributionStatus.Pending;
+    UpdatedAt = DateTime.UtcNow;
+}
 }

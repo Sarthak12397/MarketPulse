@@ -1,7 +1,6 @@
 using MarketPulse.Application.DTOs;
 using MarketPulse.Application.Interfaces;
 using MarketPulse.Domain.Entities;
-using MarketPulse.Domain.Enums;
 using MarketPulse.Domain.Exceptions;
 
 namespace MarketPulse.Application.Services;
@@ -39,11 +38,9 @@ public class CandleIngestionService
 
         if (rawCandles == null || rawCandles.Count == 0)
             throw new MarketDataUnavailableException(
-                asset.Symbol, asset.TimeFrame.ToString(), "Provider returned empty result");
+                asset.Symbol, asset.TimeFrame, "Provider returned empty result");
 
-        // Step 3 — map RawCandleDto -> CandleRecord
-        // No ExistsAsync loop. Constructor validates each candle.
-        // ON CONFLICT DO NOTHING at DB level handles duplicates.
+  
         var records = rawCandles.Select(r => new CandleRecord(
             assetId:      asset.AssetId,
             symbol:       asset.Symbol,

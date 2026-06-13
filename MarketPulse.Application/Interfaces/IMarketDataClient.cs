@@ -1,4 +1,7 @@
+using MarketPulse.Application.DTOs;
 using MarketPulse.Domain.Entities;
+using MarketPulse.Domain.Enums;
+
 namespace MarketPulse.Application.Interfaces;
 
 public interface IMarketDataClient

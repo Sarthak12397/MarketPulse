@@ -1,21 +1,15 @@
-public sealed class InvalidSignalJobStateException : InvalidOperationException
-{
-    public Guid SignalJobId { get; }
-    public SignalJobStatus ExpectedStatus { get; }
-    public SignalJobStatus ActualStatus { get; }
-    public string Operation { get; }
+using MarketPulse.Domain.Enums;
 
+namespace MarketPulse.Domain.Exceptions;
+
+public sealed class InvalidSignalJobStateException : Exception
+{
     public InvalidSignalJobStateException(
         Guid signalJobId,
-        string operation,
-        SignalJobStatus expectedStatus,
-        SignalJobStatus actualStatus)
+        SignalJobStatus status,
+        string action)
         : base(
-            $"Cannot {operation} SignalJob {signalJobId}: expected Status {expectedStatus}, but current Status is {actualStatus}")
+            $"Cannot {action} SignalJob {signalJobId}: current Status is {status}")
     {
-        SignalJobId = signalJobId;
-        Operation = operation;
-        ExpectedStatus = expectedStatus;
-        ActualStatus = actualStatus;
     }
 }
