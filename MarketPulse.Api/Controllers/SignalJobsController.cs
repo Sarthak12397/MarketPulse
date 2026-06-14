@@ -24,7 +24,7 @@ public class SignalJobsController : ControllerBase
     public async Task<IActionResult> Trigger(Guid assetId, CancellationToken ct)
     {
         var tier = HttpContext.Items["Tier"]?.ToString();
-        if (tier != "Admin") return Forbid();
+if (tier != "Admin") return StatusCode(403, "Forbidden. Admin access required.");
 
         var asset = await _assets.GetByIdAsync(assetId, ct);
         if (asset is null || !asset.IsActive)

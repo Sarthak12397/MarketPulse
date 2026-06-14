@@ -17,7 +17,7 @@ public class DistributionController : ControllerBase
     public async Task<IActionResult> GetFailed(CancellationToken ct)
     {
         var tier = HttpContext.Items["Tier"]?.ToString();
-        if (tier != "Admin") return Forbid();
+if (tier != "Admin") return StatusCode(403, "Forbidden. Admin access required.");
 
         var failed = await _distributions.GetAllFailedAsync(ct);
         var permanently = failed
@@ -29,7 +29,7 @@ public class DistributionController : ControllerBase
     public async Task<IActionResult> GetPendingCount(CancellationToken ct)
     {
         var tier = HttpContext.Items["Tier"]?.ToString();
-        if (tier != "Admin") return Forbid();
+if (tier != "Admin") return StatusCode(403, "Forbidden. Admin access required.");
 
         var pending = await _distributions.GetAllPendingAsync(ct);
         return Ok(new { count = pending.Count });

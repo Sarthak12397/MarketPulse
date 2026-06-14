@@ -18,8 +18,8 @@ public class ApiKeyAuthMiddleware
             return;
         }
 
-        if (!context.Request.Headers.TryGetValue("X-Api-Key", out var key))
-        {
+if (!context.Request.Headers.TryGetValue("X-Api-Key", out var key) &&
+    !context.Request.Headers.TryGetValue("x-api-key", out key))        {
             context.Response.StatusCode = 401;
             await context.Response.WriteAsync("Missing X-Api-Key header");
             return;
